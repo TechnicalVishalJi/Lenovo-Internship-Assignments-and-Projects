@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Outfit', sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* Background animated circles for premium look */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(80px);
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 212, 255, 0.4);
+    top: -100px;
+    left: -100px;
+    animation: drift 10s infinite alternate ease-in-out;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 0, 150, 0.3);
+    bottom: -50px;
+    right: -50px;
+    animation: drift 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.clock-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 50px 80px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clock-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.clock {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time {
+    font-size: 6rem;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to right, #fff, #b2ebf2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    min-width: 110px;
+    display: inline-block;
+}
+
+.colon {
+    font-size: 5rem;
+    font-weight: 300;
+    opacity: 0.7;
+    animation: blink 1s infinite step-start;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.am-pm {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-left: 10px;
+    color: #4dd0e1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.date {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .clock-container {
+        padding: 40px 30px;
+    }
+    .time {
+        font-size: 4rem;
+        min-width: 70px;
+    }
+    .colon {
+        font-size: 3rem;
+    }
+    .am-pm {
+        font-size: 1.5rem;
+    }
+}
